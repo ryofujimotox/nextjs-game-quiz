@@ -1,4 +1,4 @@
-import { Messages, TypeMessage } from "../ui/message"
+import { Messages, TypeMessage } from "../ui/message_gpt"
 import Sidemenu from "../ui/side-menu"
 import { InputText } from "../ui/input-text"
 
