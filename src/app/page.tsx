@@ -1,6 +1,6 @@
-import { Messages, TypeMessage } from "../ui/message_gpt"
-import Sidemenu from "../ui/side-menu"
-import { InputText } from "../ui/input-text"
+import { Messages, TypeMessage } from "../ui/message_gpt";
+import Sidemenu from "../ui/side-menu";
+import { InputText } from "../ui/input-text";
 
 export default function Home() {
   return (
@@ -25,39 +25,39 @@ const Message = () => {
     {
       direction: "left",
       text: "Hey How are you today?",
-      animation: false
+      animation: false,
     },
     {
       direction: "right",
       text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
                   ipsa commodi illum saepe numquam maxime asperiores voluptate
                   sit, minima perspiciatis.`,
-      animation: false
+      animation: false,
     },
     {
       direction: "left",
       text: "Hey How are you today?",
-      animation: false
+      animation: false,
     },
     {
       direction: "right",
       text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
                   ipsa commodi illum saepe numquam maxime asperiores voluptate
                   sit, minima perspiciatis.`,
-      animation: false
+      animation: false,
     },
     {
       direction: "left",
       text: "Hey How are you today?",
-      animation: false
+      animation: false,
     },
     {
       direction: "right",
       text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
                   ipsa commodi illum saepe numquam maxime asperiores voluptate
                   sit, minima perspiciatis.`,
-      animation: true
+      animation: true,
     },
   ];
-  return <Messages message_list={message_list} />
-}
+  return <Messages message_list={message_list} />;
+};

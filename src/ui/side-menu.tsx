@@ -98,4 +98,4 @@ const Sidemenu = () => {
   );
 };
 
-export default Sidemenu
+export default Sidemenu;

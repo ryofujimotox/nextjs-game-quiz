@@ -1,21 +1,26 @@
 type TypeMessage = {
-  direction: "right" | "left", text: string, seen?: boolean
-}
+  direction: "right" | "left";
+  text: string;
+  seen?: boolean;
+};
 
 const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
   return (
     <div className="flex flex-col h-full overflow-x-auto mb-4">
       <div className="flex flex-col h-full">
-        {
-          message_list.map((_message) => {
-            return <Message direction={_message.direction} text={_message.text} seen={_message.seen} />
-          })
-        }
+        {message_list.map((_message) => {
+          return (
+            <Message
+              direction={_message.direction}
+              text={_message.text}
+              seen={_message.seen}
+            />
+          );
+        })}
       </div>
     </div>
   );
 };
-
 
 const Message = ({ direction = "right", text, seen }: TypeMessage) => {
   if (direction == "left") {
@@ -27,17 +32,15 @@ const Message = ({ direction = "right", text, seen }: TypeMessage) => {
           </div>
           <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
             <div>{text}</div>
-            {
-              seen && (
-                <div className="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
-                  Seen
-                </div>
-              )
-            }
+            {seen && (
+              <div className="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
+                Seen
+              </div>
+            )}
           </div>
         </div>
       </div>
-    )
+    );
   } else {
     return (
       <div className="col-start-6 col-end-13 p-3 rounded-lg">
@@ -46,22 +49,18 @@ const Message = ({ direction = "right", text, seen }: TypeMessage) => {
             A
           </div>
           <div className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-            <div>
-              {text}
-            </div>
-            {
-              seen && (
-                <div className="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
-                  Seen
-                </div>
-              )
-            }
+            <div>{text}</div>
+            {seen && (
+              <div className="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
+                Seen
+              </div>
+            )}
           </div>
         </div>
       </div>
-    )
+    );
   }
-}
+};
 
 const MessageVoice = () => {
   return (
@@ -131,8 +130,8 @@ const MessageVoice = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { Messages }
-export type { TypeMessage }
+export { Messages };
+export type { TypeMessage };
