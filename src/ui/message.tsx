@@ -1,5 +1,5 @@
 type TypeMessage = {
-  direction: "right" | "left", text: string, seen: boolean
+  direction: "right" | "left", text: string, seen?: boolean
 }
 
 const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
