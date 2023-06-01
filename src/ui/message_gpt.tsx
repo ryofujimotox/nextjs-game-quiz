@@ -7,8 +7,8 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
     <div className="flex flex-col h-full overflow-x-auto mb-4">
       <div className="flex flex-col h-full">
         {
-          message_list.map((_message) => {
-            return <Message direction={_message.direction} text={_message.text} />
+          message_list.map((_message, i) => {
+            return <Message key={i} direction={_message.direction} text={_message.text} />
           })
         }
       </div>
