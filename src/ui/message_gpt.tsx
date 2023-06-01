@@ -21,12 +21,11 @@ const Message = ({ direction = "right", text }: TypeMessage) => {
     return (
       <div className="col-start-1 col-end-8 p-3 rounded-lg">
         <div className="flex flex-row items-center">
-          <div className="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 flex-shrink-0 text-white">
-            FR
-          </div>
           <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
             <div>{text}</div>
           </div>
+          <IconMe />
+
         </div>
       </div>
     )
@@ -47,6 +46,15 @@ const Message = ({ direction = "right", text }: TypeMessage) => {
   }
 }
 
+
+const IconMe = () => {
+  return (
+    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 flex-shrink-0 text-white">
+      FR
+    </div>
+  )
+}
+
 const IconChatGPT = () => {
   return (
     <div className="flex items-center justify-center h-10 w-10 rounded-full bg-gray-500 flex-shrink-0">
@@ -60,8 +68,6 @@ const IconChatGPT = () => {
         </div>
       </div>
     </div>
-
-
   )
 }
 
