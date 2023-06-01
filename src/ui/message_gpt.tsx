@@ -1,5 +1,7 @@
+import TypingAnimation from './typing-animation';
+
 type TypeMessage = {
-  direction: "right" | "left", text: string
+  direction: "right" | "left", text: string, animation: boolean
 }
 
 const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
@@ -8,7 +10,7 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
       <div className="flex flex-col h-full">
         {
           message_list.map((_message, i) => {
-            return <Message key={i} direction={_message.direction} text={_message.text} />
+            return <Message key={i} direction={_message.direction} text={_message.text} animation={_message.animation} />
           })
         }
       </div>
@@ -16,16 +18,14 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
   );
 };
 
-const Message = ({ direction = "right", text }: TypeMessage) => {
+const Message = ({ direction = "right", text, animation = true }: TypeMessage) => {
   if (direction == "left") {
     return (
       <div className="col-start-1 col-end-8 p-3 rounded-lg">
         <div className="flex flex-row items-center">
-          <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-            <div>{text}</div>
-          </div>
           <IconMe />
 
+          <Text backgroundColor='bg-white' text={text} animation={animation} />
         </div>
       </div>
     )
@@ -35,17 +35,21 @@ const Message = ({ direction = "right", text }: TypeMessage) => {
         <div className="flex items-center justify-start flex-row-reverse">
           <IconChatGPT />
 
-          <div className="relative mr-3 text-sm bg-gray-300 py-2 px-4 shadow rounded-xl">
-            <div>
-              {text}
-            </div>
-          </div>
+          <Text backgroundColor='bg-gray-300' text={text} animation={animation} />
         </div>
       </div>
     )
   }
 }
 
+const Text = ({ backgroundColor, text, animation = true }: { backgroundColor: string, text: string, animation: boolean }) => {
+  return (
+    <div className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl ${backgroundColor}`} >
+      {animation ? <TypingAnimation text={text} typingSpeed={100} /> : <div>{text}</div>
+      }
+    </div >
+  )
+}
 
 const IconMe = () => {
   return (

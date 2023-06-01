@@ -24,33 +24,39 @@ const Message = () => {
   const message_list: TypeMessage[] = [
     {
       direction: "left",
-      text: "Hey How are you today?"
+      text: "Hey How are you today?",
+      animation: false
     },
     {
       direction: "right",
       text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
                   ipsa commodi illum saepe numquam maxime asperiores voluptate
-                  sit, minima perspiciatis.`
+                  sit, minima perspiciatis.`,
+      animation: false
     },
     {
       direction: "left",
-      text: "Hey How are you today?"
+      text: "Hey How are you today?",
+      animation: false
     },
     {
       direction: "right",
       text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
                   ipsa commodi illum saepe numquam maxime asperiores voluptate
-                  sit, minima perspiciatis.`
+                  sit, minima perspiciatis.`,
+      animation: false
     },
     {
       direction: "left",
-      text: "Hey How are you today?"
+      text: "Hey How are you today?",
+      animation: false
     },
     {
       direction: "right",
       text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
                   ipsa commodi illum saepe numquam maxime asperiores voluptate
-                  sit, minima perspiciatis.`
+                  sit, minima perspiciatis.`,
+      animation: true
     },
   ];
   return <Messages message_list={message_list} />
