@@ -6,16 +6,11 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
   return (
     <div className="flex flex-col h-full overflow-x-auto mb-4">
       <div className="flex flex-col h-full">
-        <div className="grid grid-cols-12 gap-y-2">
-
-          {
-            message_list.map((_message) => {
-              return <Message direction={_message.direction} text={_message.text} seen={_message.seen} />
-            })
-          }
-
-
-        </div>
+        {
+          message_list.map((_message) => {
+            return <Message direction={_message.direction} text={_message.text} seen={_message.seen} />
+          })
+        }
       </div>
     </div>
   );
