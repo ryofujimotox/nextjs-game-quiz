@@ -29,18 +29,11 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
 };
 
 const Message = ({ data, isLast }: { data: TypeMessage; isLast: boolean }) => {
-  const hasReply = typeof data.is_yes !== "undefined";
-
   return (
     <div>
-      <MessageMe text={data.text} animation={isLast && !hasReply} />
+      <MessageMe text={data.text} />
 
-      {hasReply && (
-        <MessageGPT
-          text={data.is_yes ? "はい" : "いいえ"}
-          animation={isLast && hasReply}
-        />
-      )}
+      <MessageGPT is_yes={data.is_yes} isLast={isLast} />
     </div>
   );
 };
