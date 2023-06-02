@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Messages, TypeMessage } from "../ui/message_gpt";
+import { Messages, TypeMessage } from "../ui/chat-messages/messages";
 
 const Message = ({ list: initialize_list }: { list: TypeMessage[] }) => {
   const [list, setList] = useState<TypeMessage[]>(initialize_list);
@@ -10,7 +10,11 @@ const Message = ({ list: initialize_list }: { list: TypeMessage[] }) => {
     setList((_list) => {
       return _list.map((_val) => {
         if (_val.id == 3) {
-          _val.is_yes = true;
+          _val.is_yes = !_val.is_yes;
+          return _val;
+        }
+        if (_val.id == 2) {
+          _val.is_yes = !_val.is_yes;
           return _val;
         }
         return _val;

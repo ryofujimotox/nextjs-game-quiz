@@ -1,106 +1,3 @@
-"use client";
-
-import TypingAnimation from "./typing-animation";
-import { memo } from "react";
-
-// idなし
-interface TypeMessageElement {
-  text: string;
-
-  is_yes?: boolean;
-  reason: string;
-}
-
-// idあり
-interface TypeMessage extends TypeMessageElement {
-  id: number;
-}
-
-const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
-  return (
-    <div className="flex flex-col h-full overflow-x-auto mb-4">
-      <div className="flex flex-col h-full">
-        {message_list.map((_message, i) => {
-          const isLastData = message_list.length - 1 == i;
-
-          return (
-            <Message
-              key={_message.id}
-              data={_message}
-              isYes={_message.is_yes}
-              isLast={isLastData}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
-};
-
-const Message = memo(
-  ({
-    data,
-    isYes, //変更監視用
-    isLast,
-  }: {
-    data: TypeMessage;
-    isYes?: boolean;
-    isLast: boolean;
-  }) => {
-    return (
-      <div>
-        <MessageMe text={data.text} />
-
-        <MessageGPT is_yes={data.is_yes} isLast={isLast} />
-      </div>
-    );
-  }
-);
-
-const MessageMe = ({ text }: { text: string }) => {
-  return (
-    <div className="col-start-1 col-end-8 p-3 rounded-lg">
-      <div className="flex flex-row items-center">
-        <IconMe />
-
-        <div
-          className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl bg-white`}
-        >
-          <div>{text}</div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const MessageGPT = ({
-  is_yes,
-  isLast,
-}: {
-  is_yes?: boolean;
-  isLast: boolean;
-}) => {
-  const text = is_yes ? "はい" : "いいえ";
-
-  return (
-    <div className="col-start-6 col-end-13 p-3 rounded-lg">
-      <div className="flex items-center justify-start flex-row-reverse">
-        <IconChatGPT />
-
-        <div
-          className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl bg-gray-300`}
-        >
-          {isLast ? (
-            <TypingAnimation text={text} typingSpeed={100} />
-          ) : (
-            <div>{text}</div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const IconMe = () => {
   return (
     <div className="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 flex-shrink-0 text-white">
@@ -139,5 +36,44 @@ const IconChatGPT = () => {
   );
 };
 
-export { Messages };
-export type { TypeMessage };
+const WrapperMessages = ({ children }: { children: any }) => {
+  return (
+    <div className="flex flex-col h-full overflow-x-auto mb-4">
+      <div className="flex flex-col h-full">{children}</div>
+    </div>
+  );
+};
+
+const WrapperMessageGPT = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="col-start-6 col-end-13 p-3 rounded-lg">
+      <div className="flex items-center justify-start flex-row-reverse">
+        <IconChatGPT />
+
+        <div
+          className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl bg-gray-300`}
+        >
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const WrapperMessageMe = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="col-start-1 col-end-8 p-3 rounded-lg">
+      <div className="flex flex-row items-center">
+        <IconMe />
+
+        <div
+          className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl bg-white`}
+        >
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export { WrapperMessages, WrapperMessageMe, WrapperMessageGPT };
