@@ -10,7 +10,7 @@ interface TypeMessageElement {
   text: string;
 
   is_yes?: boolean;
-  reason: string;
+  reason?: string;
 }
 
 // idあり

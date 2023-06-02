@@ -6,21 +6,17 @@ import { InputText } from "../ui/input-text";
 
 const Message = ({ list: initialize_list }: { list: TypeMessage[] }) => {
   const [list, setList] = useState<TypeMessage[]>(initialize_list);
+  const addList = (text: string) => {
+    const maxId = Math.max(...list.map((obj) => obj.id));
+    const _new: TypeMessage = {
+      id: maxId + 1,
+      text: text,
+    };
+    setList((_list) => [..._list, _new]);
+  };
 
-  const submit = () => {
-    setList((_list) => {
-      return _list.map((_val) => {
-        if (_val.id == 3) {
-          _val.is_yes = !_val.is_yes;
-          return _val;
-        }
-        if (_val.id == 2) {
-          _val.is_yes = !_val.is_yes;
-          return _val;
-        }
-        return _val;
-      });
-    });
+  const submit = (text: string) => {
+    addList(text);
   };
 
   return (

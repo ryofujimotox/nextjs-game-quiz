@@ -6,17 +6,17 @@ const InputText = ({
   onSubmit,
 }: {
   placeholder?: string;
-  onSubmit?: () => void;
+  onSubmit?: (text: string) => void;
 }) => {
   const [text, setText] = useState<string>("");
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setText("");
-
     if (onSubmit) {
-      onSubmit();
+      onSubmit(text);
     }
+
+    setText("");
   };
 
   return (

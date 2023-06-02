@@ -10,7 +10,6 @@ export default function Home() {
       is_yes: true,
       reason: "本来はオレンジ色ですが、赤ともいえます。",
     },
-
     {
       id: 2,
       text: `大きいですか?\nipsa commodi illum saepe numquam maxime asperiores voluptate`,
@@ -22,7 +21,7 @@ export default function Home() {
       id: 3,
       text: "東京タワー?東京タワー?東京タワー?東京タワー?東京タワー?東京タワー?",
 
-      is_yes: undefined,
+      is_yes: false,
       reason: "",
     },
   ];
