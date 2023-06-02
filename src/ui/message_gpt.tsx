@@ -1,10 +1,16 @@
 import TypingAnimation from "./typing-animation";
 
-type TypeMessage = {
+// idなし
+interface TypeMessageElement {
   direction: "right" | "left";
   text: string;
   animation: boolean;
-};
+}
+
+// idあり
+interface TypeMessage extends TypeMessageElement {
+  id: number;
+}
 
 const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
   return (
@@ -13,7 +19,7 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
         {message_list.map((_message, i) => {
           return (
             <Message
-              key={i}
+              key={_message.id}
               direction={_message.direction}
               text={_message.text}
               animation={_message.animation}
@@ -29,7 +35,7 @@ const Message = ({
   direction = "right",
   text,
   animation = true,
-}: TypeMessage) => {
+}: TypeMessageElement) => {
   if (direction == "left") {
     return (
       <div className="col-start-1 col-end-8 p-3 rounded-lg">
