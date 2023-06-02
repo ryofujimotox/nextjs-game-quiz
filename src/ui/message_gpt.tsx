@@ -2,9 +2,10 @@ import TypingAnimation from "./typing-animation";
 
 // idなし
 interface TypeMessageElement {
-  direction: "right" | "left";
   text: string;
-  animation?: boolean;
+
+  is_yes?: boolean;
+  reason: string;
 }
 
 // idあり
@@ -17,13 +18,9 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
     <div className="flex flex-col h-full overflow-x-auto mb-4">
       <div className="flex flex-col h-full">
         {message_list.map((_message, i) => {
+          const isLastData = message_list.length - 1 == i;
           return (
-            <Message
-              key={_message.id}
-              direction={_message.direction}
-              text={_message.text}
-              animation={_message.animation}
-            />
+            <Message key={_message.id} data={_message} isLast={isLastData} />
           );
         })}
       </div>
@@ -31,56 +28,63 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
   );
 };
 
-const Message = ({
-  direction = "right",
-  text,
-  animation = false,
-}: TypeMessageElement) => {
-  if (direction == "left") {
-    return (
-      <div className="col-start-1 col-end-8 p-3 rounded-lg">
-        <div className="flex flex-row items-center">
-          <IconMe />
+const Message = ({ data, isLast }: { data: TypeMessage; isLast: boolean }) => {
+  const hasReply = typeof data.is_yes !== "undefined";
 
-          <Text backgroundColor="bg-white" text={text} animation={animation} />
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="col-start-6 col-end-13 p-3 rounded-lg">
-        <div className="flex items-center justify-start flex-row-reverse">
-          <IconChatGPT />
+  return (
+    <div>
+      <MessageMe text={data.text} animation={isLast && !hasReply} />
 
-          <Text
-            backgroundColor="bg-gray-300"
-            text={text}
-            animation={animation}
-          />
-        </div>
-      </div>
-    );
-  }
+      {hasReply && (
+        <MessageGPT
+          text={data.is_yes ? "はい" : "いいえ"}
+          animation={isLast && hasReply}
+        />
+      )}
+    </div>
+  );
 };
 
-const Text = ({
-  backgroundColor,
-  text,
-  animation = false,
-}: {
-  backgroundColor: string;
-  text: string;
-  animation: boolean;
-}) => {
+const MessageMe = ({ text }: { text: string }) => {
   return (
-    <div
-      className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl ${backgroundColor}`}
-    >
-      {animation ? (
-        <TypingAnimation text={text} typingSpeed={100} />
-      ) : (
-        <div>{text}</div>
-      )}
+    <div className="col-start-1 col-end-8 p-3 rounded-lg">
+      <div className="flex flex-row items-center">
+        <IconMe />
+
+        <div
+          className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl bg-white`}
+        >
+          <div>{text}</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MessageGPT = ({
+  is_yes,
+  isLast,
+}: {
+  is_yes?: boolean;
+  isLast: boolean;
+}) => {
+  const text = is_yes ? "はい" : "いいえ";
+
+  return (
+    <div className="col-start-6 col-end-13 p-3 rounded-lg">
+      <div className="flex items-center justify-start flex-row-reverse">
+        <IconChatGPT />
+
+        <div
+          className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl bg-gray-300`}
+        >
+          {isLast ? (
+            <TypingAnimation text={text} typingSpeed={100} />
+          ) : (
+            <div>{text}</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

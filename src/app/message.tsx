@@ -9,9 +9,8 @@ const Message = ({ list: initialize_list }: { list: TypeMessage[] }) => {
   const submit = () => {
     setList((_list) => {
       return _list.map((_val) => {
-        if (_val.id == 6) {
-          _val.animation = false;
-          _val.text = "はい";
+        if (_val.id == 3) {
+          _val.is_yes = true;
           return _val;
         }
         return _val;

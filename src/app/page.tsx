@@ -6,38 +6,25 @@ export default function Home() {
   const message_list: TypeMessage[] = [
     {
       id: 1,
-      direction: "left",
-      text: "Hey How are you today?",
+      text: "赤い?赤い?赤い?赤い?赤い?赤い?",
+
+      is_yes: true,
+      reason: "本来はオレンジ色ですが、赤ともいえます。",
     },
+
     {
       id: 2,
-      direction: "right",
-      text: `はい`,
+      text: `大きいですか?\nipsa commodi illum saepe numquam maxime asperiores voluptate`,
+
+      is_yes: true,
+      reason: "観光地としても、日本国内の建造物としても大きいです。",
     },
     {
       id: 3,
-      direction: "left",
-      text: "Hey How are you today?",
-    },
-    {
-      id: 4,
-      direction: "right",
-      text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
-                  ipsa commodi illum saepe numquam maxime asperiores voluptate
-                  sit, minima perspiciatis.`,
-    },
-    {
-      id: 5,
-      direction: "left",
-      text: "Hey How are you today?",
-    },
-    {
-      id: 6,
-      direction: "right",
-      text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
-                  ipsa commodi illum saepe numquam maxime asperiores voluptate
-                  sit, minima perspiciatis.`,
-      animation: true,
+      text: "東京タワー?東京タワー?東京タワー?東京タワー?東京タワー?東京タワー?",
+
+      is_yes: undefined,
+      reason: "",
     },
   ];
 
