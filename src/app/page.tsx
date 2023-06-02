@@ -26,19 +26,16 @@ const Message = () => {
       id: 1,
       direction: "left",
       text: "Hey How are you today?",
-      animation: false,
     },
     {
       id: 2,
       direction: "right",
       text: `はい`,
-      animation: false,
     },
     {
       id: 3,
       direction: "left",
       text: "Hey How are you today?",
-      animation: false,
     },
     {
       id: 4,
@@ -46,13 +43,11 @@ const Message = () => {
       text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
                   ipsa commodi illum saepe numquam maxime asperiores voluptate
                   sit, minima perspiciatis.`,
-      animation: false,
     },
     {
       id: 5,
       direction: "left",
       text: "Hey How are you today?",
-      animation: false,
     },
     {
       id: 6,

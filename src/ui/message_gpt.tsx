@@ -4,7 +4,7 @@ import TypingAnimation from "./typing-animation";
 interface TypeMessageElement {
   direction: "right" | "left";
   text: string;
-  animation: boolean;
+  animation?: boolean;
 }
 
 // idあり
@@ -34,7 +34,7 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
 const Message = ({
   direction = "right",
   text,
-  animation = true,
+  animation = false,
 }: TypeMessageElement) => {
   if (direction == "left") {
     return (
@@ -66,7 +66,7 @@ const Message = ({
 const Text = ({
   backgroundColor,
   text,
-  animation = true,
+  animation = false,
 }: {
   backgroundColor: string;
   text: string;
