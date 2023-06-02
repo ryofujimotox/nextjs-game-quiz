@@ -1,4 +1,7 @@
+"use client";
+
 import TypingAnimation from "./typing-animation";
+import { memo } from "react";
 
 // idなし
 interface TypeMessageElement {
@@ -19,8 +22,14 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
       <div className="flex flex-col h-full">
         {message_list.map((_message, i) => {
           const isLastData = message_list.length - 1 == i;
+
           return (
-            <Message key={_message.id} data={_message} isLast={isLastData} />
+            <Message
+              key={_message.id}
+              data={_message}
+              isYes={_message.is_yes}
+              isLast={isLastData}
+            />
           );
         })}
       </div>
@@ -28,15 +37,25 @@ const Messages = ({ message_list }: { message_list: TypeMessage[] }) => {
   );
 };
 
-const Message = ({ data, isLast }: { data: TypeMessage; isLast: boolean }) => {
-  return (
-    <div>
-      <MessageMe text={data.text} />
+const Message = memo(
+  ({
+    data,
+    isYes, //変更監視用
+    isLast,
+  }: {
+    data: TypeMessage;
+    isYes?: boolean;
+    isLast: boolean;
+  }) => {
+    return (
+      <div>
+        <MessageMe text={data.text} />
 
-      <MessageGPT is_yes={data.is_yes} isLast={isLast} />
-    </div>
-  );
-};
+        <MessageGPT is_yes={data.is_yes} isLast={isLast} />
+      </div>
+    );
+  }
+);
 
 const MessageMe = ({ text }: { text: string }) => {
   return (
