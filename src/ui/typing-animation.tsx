@@ -14,16 +14,21 @@ const TypingAnimation: React.FC<TypingAnimationProps> = ({
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    setDisplayedText("");
+    setIndex(0);
+  }, [text]);
+
+  useEffect(() => {
     if (index < text.length) {
       const timeoutId = setTimeout(() => {
-        setDisplayedText(displayedText + text[index]);
-        setIndex(index + 1);
+        setDisplayedText((prevText) => prevText + text[index]);
+        setIndex((prevIndex) => prevIndex + 1);
       }, typingSpeed);
       return () => {
         clearTimeout(timeoutId);
       };
     }
-  }, [text, typingSpeed, index, displayedText]);
+  }, [text, typingSpeed, index]);
 
   return <p>{displayedText}</p>;
 };
