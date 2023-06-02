@@ -67,7 +67,7 @@ const WrapperMessageMe = ({ children }: { children: React.ReactNode }) => {
         <IconMe />
 
         <div
-          className={`relative mr-3 text-sm py-2 px-4 shadow rounded-xl bg-white`}
+          className={`relative ml-3 text-sm py-2 px-4 shadow rounded-xl bg-white`}
         >
           {children}
         </div>
