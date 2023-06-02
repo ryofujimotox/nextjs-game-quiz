@@ -1,6 +1,5 @@
-import Message, { TypeMessage } from "./message";
+import Message, { TypeMessage } from "./messages";
 import Sidemenu from "../ui/side-menu";
-import { InputText } from "../ui/input-text";
 
 export default function Home() {
   const message_list: TypeMessage[] = [
@@ -33,13 +32,7 @@ export default function Home() {
       <div className="flex flex-row h-full w-full overflow-x-hidden">
         {/* <Sidemenu /> */}
 
-        <div className="flex flex-col flex-auto h-full p-6">
-          <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
-            <Message list={message_list} />
-
-            <InputText />
-          </div>
-        </div>
+        <Message list={message_list} />
       </div>
     </div>
   );

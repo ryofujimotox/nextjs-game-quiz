@@ -1,12 +1,22 @@
 "use client";
 import React, { useState } from "react";
 
-const InputText = () => {
+const InputText = ({
+  placeholder,
+  onSubmit,
+}: {
+  placeholder?: string;
+  onSubmit?: () => void;
+}) => {
   const [text, setText] = useState<string>("");
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setText("");
+
+    if (onSubmit) {
+      onSubmit();
+    }
   };
 
   return (
@@ -15,7 +25,7 @@ const InputText = () => {
         <div className="flex flex-col w-full py-[10px] flex-grow md:py-4 md:pl-4 relative  bg-white dark:border-gray-900/50 dark:text-white dark:bg-gray-700 rounded-xl">
           <input
             type="text"
-            placeholder="赤い？大きい？, 答えを教えて, ヒントを教えて"
+            placeholder={placeholder}
             className="focus:outline-none focus:ring-0 focus:border-gray-300"
             value={text}
             onChange={(event) => setText(event.target.value)}
